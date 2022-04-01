@@ -93,6 +93,16 @@ This channel mode controls a list of client masks that are exempt from the ['ban
 
 If this mode is set on a channel, and a client sends a `JOIN` request for this channel, their nickmask is compared with each 'exempted' client mask. If their nickmask matches any one of the masks set by this mode, and their nickmask also matches any one of the masks set by the [ban](#ban-channel-mode) channel mode, they will not be blocked from joining due to the [ban](#ban-channel-mode) mode.
 
+### No-CTCP Channel Mode
+
+This mode is used in almost all IRC software today. The standard mode letter used for it is `"+C"`.
+
+When this mode is set, should not send [CTCP](/ctcp.html) messages, except CTCP Action (also known as `/me`) to the channel.
+
+When blocking a message because of this mode, servers SHOULD use {% numeric ERR_CANNOTSENDTOCHAN %}, but clients SHOULD also support servers sending 492 (`ERR_NOCTCP`) instead.
+
+Servers MAY allow some users (such as operators) to send CTCP despite this mode.
+
 ### Client Limit Channel Mode
 
 This mode is standard, and the mode letter used for it is `"+l"`.
